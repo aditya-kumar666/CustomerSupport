@@ -1,5 +1,5 @@
 langgraph<2,>=1.2.24
-openai<3,>=1.0
+openai<3,>=2.26
 pydantic<3,>=2
 
 [dev]
