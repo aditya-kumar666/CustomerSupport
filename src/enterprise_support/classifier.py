@@ -88,13 +88,6 @@ class ComplaintClassifier:
                 "classification": None,
                 "error": str(exc),
             }
-        except Exception as exc:
-            return {
-                "complaint": state["complaint"],
-                "attempts": attempts,
-                "classification": None,
-                "error": str(exc),
-            }
 
     def _route_after_classification(self, state: ComplaintState) -> str:
         if state["classification"] is not None:
@@ -118,5 +111,6 @@ class ComplaintClassifier:
         if error == "Complaint text cannot be empty":
             raise ClassificationError(error)
         raise ClassificationError(
-            f"Could not produce a valid classification after {self.max_attempts} attempts"
+            f"Could not produce a valid classification after {self.max_attempts} attempts. "
+            f"Last validation error: {error}"
         )

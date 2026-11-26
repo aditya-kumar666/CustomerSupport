@@ -15,7 +15,7 @@ python -m pip install -e ".[dev]"
 copy .env.example .env
 ```
 
-Set `OPENAI_API_KEY` in `.env`. Optionally set `OPENAI_MODEL`.
+The app loads `.env` from the project root. Set `OPENAI_API_KEY` there; optionally set `OPENAI_MODEL`.
 
 ### Run
 

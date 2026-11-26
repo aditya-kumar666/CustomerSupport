@@ -1,8 +1,14 @@
 import os
+from pathlib import Path
 from typing import Any
+
+from dotenv import load_dotenv
 
 
 def create_chat_model() -> Any:
+    env_file = Path(__file__).resolve().parents[2] / ".env"
+    load_dotenv(env_file)
+
     try:
         from openai import OpenAI
     except ImportError as exc:

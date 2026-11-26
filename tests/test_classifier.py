@@ -100,8 +100,14 @@ def test_invalid_response_raises_controlled_error():
         ]
     )
 
-    with pytest.raises(ClassificationError, match="Could not produce a valid classification"):
+    with pytest.raises(ClassificationError, match="Last validation error"):
         ComplaintClassifier(llm, max_attempts=2).classify("I need help")
+
+
+def test_classification_schema_forbids_extra_fields():
+    schema = ComplaintClassification.model_json_schema()
+
+    assert schema["additionalProperties"] is False
 
 
 def test_empty_complaint_raises_controlled_error():
